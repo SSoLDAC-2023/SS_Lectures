@@ -70,15 +70,19 @@ npm run start:file
 
 5. Enter account credentials, which will be linked to your WebID. It should look like this:
 
-```
-WebID: https://localhost:3000/dummy/profile/card#me
-```
+![CSS](images/solidserver.png)
+
 
 6. Click "complete setup".
 
 7. Open the folder with the Solid Server in VS code.
 
-As we chose the startup option "npm run start:file" earlier, our Pods and their data will be preserved in the file system. A new directory has been created to organize the data in the Pods, called "/data". The Solid Server will mirror the content of the corresponding Pod folders corresponding to the Linked Data Platform (LDP) specification. This means that all resources will be accessible via HTTP URLs as well. The URLs contain the parent folders until the root of the Pod. For example, after initialization, every Pod contains already one subfolder called "profile", containing the "card". This is the resource linked to the URL of the WebID of the Pod owner.
+As we chose the startup option "npm run start:file" earlier, our Pods and their data will be preserved in the file system. A new directory has been created to organize the data in the Pods, called "/data". 
+
+![filestructure](images/ldp.png)
+
+
+The Solid Server will mirror the content of the corresponding Pod folders corresponding to the Linked Data Platform (LDP) specification. This means that all resources will be accessible via HTTP URLs as well. The URLs contain the parent folders until the root of the Pod. For example, after initialization, every Pod contains already one subfolder called "profile", containing the "card". This is the resource linked to the URL of the WebID of the Pod owner.
 
 For example, in the situation depicted in the image above, `data/dummy/profile/card$.ttl` will be hosted at [http://localhost:3000/dummy/profile/card](http://localhost:3000/dummy/profile/card). The access control rules which state that the public has READ access and the owner has READ, WRITE, and CONTROL access are defined in the `card.acl` resource.
 
@@ -129,7 +133,7 @@ The media types of these distributions are included in the metadata. We will lat
 
 The structure of the interconnected catalogues on the stakeholder Pods will look like this:
 
-![Interconnected Catalogues](image.png)
+![Interconnected Catalogues](images/catalogues.png)
 
 A `dcat:Catalog` points to its dataset with the property `dcat:dataset`. Since instances of `dcat:Catalog` are also instances of `dcat:Dataset`, the same property can be used for a catalogue to aggregate another catalogue. Recursively following all `dcat:dataset` properties from one project access point, we can thus discover all the datasets in a project, using this simple query:
 
